@@ -69,19 +69,4 @@ public class ConversionExperiment {
 	public void setVarianceOfDuplication(double varianceOfDuplication) {
 		this.varianceOfDuplication = varianceOfDuplication;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

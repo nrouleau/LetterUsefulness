@@ -43,23 +43,50 @@ public class ConvertedDictionary {
 	 * places each word into the words HashTable, incrementing the value when any duplicates are found.
 	 */
 	public void takeInput() {
-		int i = 0;
-		while ((wordInput.hasNextLine())&&(i < 100)) {
+		int numUnconvertedWords = 0;
+		int numDuplicates = 0;
+		while (wordInput.hasNextLine()) {
 			String nextWord = convertString(wordInput.nextLine());
 			// Increment existing matches
 			if (words.containsKey(nextWord)) { 
 				words.put(nextWord, new Integer(words.get(nextWord).intValue()+1)); 
 			} else { // Place new entries otherwise
 				words.put(nextWord, new Integer(0));
+				numDuplicates++;
 			}
-			System.out.println("line:"+nextWord+":"+words.get(nextWord));
-			++i;
+			//System.out.println("line:"+nextWord+":"+words.get(nextWord));
+			numUnconvertedWords++;
 		}
 		if (words.isEmpty()) { 
 			System.err.println("Error: Hashtable is empty");
 			System.exit(0);
 		}
+		// Set the experiment values
+		experiment.setTotalWords(numUnconvertedWords);
+		experiment.setSumDuplicates(numDuplicates);
+		experiment.setTotalUniqueConvertedWords(numUnconvertedWords - numDuplicates);
+		experiment.setDuplicatesPerWord((double)numDuplicates/(double)numUnconvertedWords);
+		experiment.setDuplicatesPerConvertedWord((double)numDuplicates/(double)experiment.getTotalUniqueConvertedWords());
+		// Still need to set variance, but need to iterate across and find sum of squares first.
 		wordInput.close();
+	}
+	
+	public void computeDuplicationVariance() {
+		if (experiment.getTotalUniqueConvertedWords() <= 0) {
+			System.err.println("Error: reported 0 or fewer unique converted words ...");
+			System.err.println("Did you call computeDuplicationVariance before takeInput?");
+			System.exit(0);
+		}
+		
+		int sumOfSquares = 0;
+		for (int i : words.values()) {
+			sumOfSquares += i*i;
+		}
+		double mean = experiment.getDuplicatesPerConvertedWord();
+		double uniqueWords = (double)experiment.getTotalUniqueConvertedWords();
+		// Variance by the formula: var(X) = E(X^2) - E(X)^2
+		double variance = (double)sumOfSquares/uniqueWords - mean*mean;
+		experiment.setVarianceOfDuplication(variance);
 	}
 	
 	/**
