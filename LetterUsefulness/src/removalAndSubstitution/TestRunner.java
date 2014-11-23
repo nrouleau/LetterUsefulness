@@ -26,6 +26,16 @@ public class TestRunner {
 			System.out.println("English with the letter " + removeString 
 					+ " removed has " + experiment.getSumDuplicates() + " duplicates");
 		}
+		
+		ConvertedDictionary replaceDictionary = null;
+		for (String replaceString : alphabet) {
+			replaceDictionary = new ConvertedDictionary("WordsEn.txt", 
+							ConvertedDictionary.ConversionType.REPLACECHAR, "q", replaceString);
+			replaceDictionary.takeInput();
+			ConversionExperiment experiment = replaceDictionary.getExperiment();
+			System.out.println("When we replace \"q\" with " + replaceString
+					+ ", there are " + experiment.getSumDuplicates() + " duplicates.");
+		}
 	}
 
 }
