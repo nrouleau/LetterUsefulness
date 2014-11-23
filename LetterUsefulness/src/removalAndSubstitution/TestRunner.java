@@ -19,7 +19,7 @@ public class TestRunner {
 				"q", "r", "s", "t", "u", "v", "w", "x", "y", "x"};
 		
 		for (String removeString : alphabet) {
-			removalDictionary = new ConvertedDictionary("wordlist.txt", 
+			removalDictionary = new ConvertedDictionary("wordsEn.txt", 
 							ConvertedDictionary.ConversionType.REMOVECHAR, removeString);
 			removalDictionary.takeInput();
 			ConversionExperiment experiment = removalDictionary.getExperiment();
