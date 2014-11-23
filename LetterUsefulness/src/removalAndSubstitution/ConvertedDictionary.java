@@ -16,7 +16,10 @@ public class ConvertedDictionary {
 	}
 	
 	// Will use constructor overloading for more options
-	public ConvertedDictionary(String filename, ConversionType conversionType, String removalString) {//, char removalLetter) {
+	public ConvertedDictionary(String filename, ConversionType conversionType, String removalString) {
+		this(filename, conversionType, removalString, null);
+	}
+	public ConvertedDictionary(String filename, ConversionType conversionType, String removalString, String replaceString) {
 		// Create a scanner from the filename
 		Scanner wordInput = null;
 		try {
@@ -28,9 +31,15 @@ public class ConvertedDictionary {
 		this.wordInput = wordInput;
 		this.conversionType = conversionType;
 		this.removalString = removalString;
+		this.replaceString = replaceString;
 		this.words = new Hashtable<String, Integer>();
 	}
 	
+	/**
+	 * Takes input from the file specified in the constructor,
+	 * converts each word into a new form as per the protocol specified in the constructor,
+	 * places each word into the words HashTable, incrementing the value when any duplicates are found.
+	 */
 	public void takeInput() {
 		int i = 0;
 		while ((wordInput.hasNextLine())&&(i < 100)) {
@@ -78,7 +87,8 @@ public class ConvertedDictionary {
 			converted = unconverted.replaceAll(removalString, replaceString);
 			break;
 		case ADDCHARRANDOM:
-			
+			System.err.println("Error: Unsupported operation");
+			System.exit(0);
 			break;
 		default:
 			System.err.println("Error: Invalid conversion type");
