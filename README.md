@@ -1,7 +1,9 @@
 LetterUsefulness
 ================
 
-Determining the usefulness of the letters in the english language
+Determining the usefulness of the letters in the english language.
+
+This code basically just grabs all the words in the English language from a text file and tries removing letters or replacing letters with other letters. Based on the number of duplicate words that result, it can spit out a few summary statistics.
 
 First text file (smaller version of English language) taken from http://www-personal.umich.edu/~jlawler/wordlist.html
 
