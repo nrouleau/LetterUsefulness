@@ -12,7 +12,7 @@ public class ConvertedDictionary {
 	String replaceString;
 	Scanner wordInput;
 	public enum ConversionType {
-		REMOVECHAR, REPLACECHAR, ADDCHARRANDOM
+		NOCONVERSION, REMOVECHAR, REPLACECHAR, ADDCHARRANDOM
 	}
 	
 	// Will use constructor overloading for more options
@@ -72,6 +72,9 @@ public class ConvertedDictionary {
 		}
 		String converted = null;
 		switch(conversionType) {
+		case NOCONVERSION:
+			converted = unconverted;
+			break;
 		case REMOVECHAR:
 			if (removalString == null) { 
 				System.err.println("No removalString"); 
