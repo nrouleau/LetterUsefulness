@@ -7,13 +7,16 @@ import java.util.Scanner;
 
 public class ConvertedDictionary {
 	Hashtable<String, Integer> words;
-	int conversionType;
+	ConversionType conversionType;
 	char removalLetter;
 	char replaceLetter;
 	Scanner wordInput;
+	public enum ConversionType {
+		REMOVECHAR, REPLACECHAR, ADDCHARRANDOM
+	}
 	
 	// Will use constructor overloading for more options
-	public ConvertedDictionary(String filename, int conversionType) {//, char removalLetter) {
+	public ConvertedDictionary(String filename, ConversionType conversionType) {//, char removalLetter) {
 		// Create a scanner from the filename
 		Scanner wordInput = null;
 		try {

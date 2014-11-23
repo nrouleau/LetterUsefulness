@@ -5,7 +5,8 @@ public class TestRunner {
 	public static void main(String[] args) {
 		System.out.println("Hello, world!");
 		
-		ConvertedDictionary simpleDictionary = new ConvertedDictionary("wordlist.txt", 0);
+		ConvertedDictionary simpleDictionary = 
+				new ConvertedDictionary("wordlist.txt", ConvertedDictionary.ConversionType.REMOVECHAR);
 		simpleDictionary.takeInput();
 	}
 
