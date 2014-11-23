@@ -2,6 +2,7 @@ package removalAndSubstitution;
 
 /**
  * Basically just a C struct - holds data about a particular ConvertedDictionary
+ * Also holds a print function mostly for debugging or exploring different experiments
  * @author Noah
  *
  */
@@ -24,6 +25,15 @@ public class ConversionExperiment {
 		duplicatesPerWord = -1;
 		duplicatesPerConvertedWord = -1;
 		varianceOfDuplication = -1;
+	}
+	
+	public void print() {
+		System.out.println("Total words: " + totalWords);
+		System.out.println("Total unique words after conversion: " + totalUniqueConvertedWords);
+		System.out.println("Total duplicate converted words: " + sumDuplicates);
+		System.out.println("Duplicates per word: " + duplicatesPerWord);
+		System.out.println("Duplicates per converted word: " + duplicatesPerConvertedWord);
+		System.out.println("Variance of number of duplicates for converted words: " + varianceOfDuplication);
 	}
 	
 	/*
