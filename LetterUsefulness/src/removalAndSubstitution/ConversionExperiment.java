@@ -18,12 +18,12 @@ public class ConversionExperiment {
 	 */
 	public ConversionExperiment() {
 		// Default Values
-		totalWords = 0;
-		totalUniqueConvertedWords = 0;
-		sumDuplicates = 0;
-		duplicatesPerWord = 0;
-		duplicatesPerConvertedWord = 0;
-		varianceOfDuplication = Double.POSITIVE_INFINITY;
+		totalWords = -1;
+		totalUniqueConvertedWords = -1;
+		sumDuplicates = -1;
+		duplicatesPerWord = -1;
+		duplicatesPerConvertedWord = -1;
+		varianceOfDuplication = -1;
 	}
 	
 	/*

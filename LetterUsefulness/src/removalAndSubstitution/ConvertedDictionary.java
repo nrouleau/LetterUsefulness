@@ -6,7 +6,6 @@ import java.util.Hashtable;
 import java.util.Scanner;
 
 public class ConvertedDictionary {
-	Hashtable<String, Integer> words;
 	ConversionType conversionType;
 	String removalString;
 	String replaceString;
@@ -14,6 +13,8 @@ public class ConvertedDictionary {
 	public enum ConversionType {
 		NOCONVERSION, REMOVECHAR, REPLACECHAR, ADDCHARRANDOM
 	}
+	Hashtable<String, Integer> words;
+	ConversionExperiment experiment;
 	
 	// Will use constructor overloading for more options
 	public ConvertedDictionary(String filename, ConversionType conversionType, String removalString) {
@@ -33,6 +34,7 @@ public class ConvertedDictionary {
 		this.removalString = removalString;
 		this.replaceString = replaceString;
 		this.words = new Hashtable<String, Integer>();
+		this.experiment = new ConversionExperiment();
 	}
 	
 	/**
