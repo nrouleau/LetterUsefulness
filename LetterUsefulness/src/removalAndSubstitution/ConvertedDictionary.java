@@ -41,6 +41,8 @@ public class ConvertedDictionary {
 	 * Takes input from the file specified in the constructor,
 	 * converts each word into a new form as per the protocol specified in the constructor,
 	 * places each word into the words HashTable, incrementing the value when any duplicates are found.
+	 * 
+	 * Also modifies conversionExperiment to include all but the variance fields.
 	 */
 	public void takeInput() {
 		int numUnconvertedWords = 0;
@@ -71,6 +73,10 @@ public class ConvertedDictionary {
 		wordInput.close();
 	}
 	
+	/**
+	 * Computes the variance of duplication from the words hash duplication values.
+	 * Do not call this method before calling takeInput.
+	 */
 	public void computeDuplicationVariance() {
 		if (experiment.getTotalUniqueConvertedWords() <= 0) {
 			System.err.println("Error: reported 0 or fewer unique converted words ...");
