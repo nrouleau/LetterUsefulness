@@ -51,10 +51,10 @@ public class ConvertedDictionary {
 			String nextWord = convertString(wordInput.nextLine());
 			// Increment existing matches
 			if (words.containsKey(nextWord)) { 
-				words.put(nextWord, new Integer(words.get(nextWord).intValue()+1)); 
+				words.put(nextWord, new Integer(words.get(nextWord).intValue()+1));
+				numDuplicates++;
 			} else { // Place new entries otherwise
 				words.put(nextWord, new Integer(0));
-				numDuplicates++;
 			}
 			//System.out.println("line:"+nextWord+":"+words.get(nextWord));
 			numUnconvertedWords++;
@@ -135,4 +135,10 @@ public class ConvertedDictionary {
 		return converted;
 	}
 	
+	/**
+	 * getters
+	 */
+	public ConversionExperiment getExperiment() {
+		return experiment;
+	}
 }

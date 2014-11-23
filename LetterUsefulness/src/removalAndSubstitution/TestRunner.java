@@ -9,6 +9,8 @@ public class TestRunner {
 		ConvertedDictionary simpleDictionary = 
 				new ConvertedDictionary("wordlist.txt", ConvertedDictionary.ConversionType.REMOVECHAR, "a");
 		simpleDictionary.takeInput();
+		simpleDictionary.computeDuplicationVariance();
+		simpleDictionary.getExperiment().print();
 		
 		
 	}
