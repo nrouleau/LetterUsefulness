@@ -8,47 +8,83 @@ import java.util.Scanner;
 public class ConvertedDictionary {
 	Hashtable<String, Integer> words;
 	ConversionType conversionType;
-	char removalLetter;
-	char replaceLetter;
+	String removalString;
+	String replaceString;
 	Scanner wordInput;
 	public enum ConversionType {
 		REMOVECHAR, REPLACECHAR, ADDCHARRANDOM
 	}
 	
 	// Will use constructor overloading for more options
-	public ConvertedDictionary(String filename, ConversionType conversionType) {//, char removalLetter) {
+	public ConvertedDictionary(String filename, ConversionType conversionType, String removalString) {//, char removalLetter) {
 		// Create a scanner from the filename
 		Scanner wordInput = null;
 		try {
 			wordInput = new Scanner(new File(filename));
 		} catch (FileNotFoundException e) {
-			System.out.println("File not found: " + e.getMessage());
+			System.err.println("File not found: " + e.getMessage());
 			System.exit(0);
 		}
 		this.wordInput = wordInput;
 		this.conversionType = conversionType;
-		//this.removalLetter = removalLetter;
+		this.removalString = removalString;
 		this.words = new Hashtable<String, Integer>();
 	}
 	
 	public void takeInput() {
 		int i = 0;
 		while ((wordInput.hasNextLine())&&(i < 100)) {
-			String nextWord = wordInput.nextLine();
-			System.out.println("line:"+nextWord+":");
+			String nextWord = convertString(wordInput.nextLine());
 			// Increment existing matches
 			if (words.containsKey(nextWord)) { 
-				words.put(nextWord, new Integer(words.get(nextWord).intValue())); 
+				words.put(nextWord, new Integer(words.get(nextWord).intValue()+1)); 
 			} else { // Place new entries otherwise
 				words.put(nextWord, new Integer(0));
 			}
+			System.out.println("line:"+nextWord+":"+words.get(nextWord));
 			++i;
 		}
 		if (words.isEmpty()) { 
-			System.out.println("Error: Hashtable is empty");
+			System.err.println("Error: Hashtable is empty");
 			System.exit(0);
 		}
 		wordInput.close();
+	}
+	
+	/**
+	 * Converts a string according to the dictionary's protocol
+	 * @param unconverted - The string that will be converted before placement in dictionary
+	 * @return converted - the converted string
+	 */
+	private String convertString(String unconverted) {
+		if (unconverted == null) {
+			System.err.println("Error: input unconverted string is null");
+			System.exit(0);
+		}
+		String converted = null;
+		switch(conversionType) {
+		case REMOVECHAR:
+			if (removalString == null) { 
+				System.err.println("No removalString"); 
+				System.exit(0);
+			}
+			converted = unconverted.replaceAll(removalString, "");
+			break;
+		case REPLACECHAR:
+			if ((removalString == null)||(replaceString == null)) {
+				System.err.println("No removalString or no replaceString");
+				System.exit(0);
+			}
+			converted = unconverted.replaceAll(removalString, replaceString);
+			break;
+		case ADDCHARRANDOM:
+			
+			break;
+		default:
+			System.err.println("Error: Invalid conversion type");
+			System.exit(0);
+		}
+		return converted;
 	}
 	
 }
